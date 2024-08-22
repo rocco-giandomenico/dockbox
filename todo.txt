@@ -1,2 +1,10 @@
--   create git repository
++   webserver splashscreen
++   install node & npm
+
+
+
+
+
+-   install sass
 -   dashboard
+-   push new docker images (database & webserver)

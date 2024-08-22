@@ -11,12 +11,15 @@
 
     <body>
         <main class="container">
-            <h1>Your simple local development enviroment</h1>
-            <h2>Your simple local development enviroment</h2>
-            <h3>Your simple local development enviroment</h3>
-            <h4>Your simple local development enviroment</h4>
-            <h5>Your simple local development enviroment</h5>
-            <h6>Your simple local development enviroment</h6>
+            <h1>
+                node - <?php echo shell_exec('node -v 2>&1'); ?>
+            </h1>
+
+            <h1>
+                npm - <?php echo shell_exec('npm -v 2>&1'); ?>
+            </h1>
+
+    
         </main>
     </body>
 

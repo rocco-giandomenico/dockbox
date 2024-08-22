@@ -5,10 +5,10 @@ services:
 
   webserver:
 
-    image: "${DOCKERHUB_USER}/${WEBSERVER_VERSION}:latest"
+    # image: "${DOCKERHUB_USER}/${WEBSERVER_VERSION}:latest"
 
-    # build:
-    #   context: ./bin/${WEBSERVER_VERSION}
+    build:
+      context: ./bin/${WEBSERVER_VERSION}
 
     container_name: "${COMPOSE_PROJECT_NAME}-${WEBSERVER_VERSION}"
 
@@ -49,10 +49,10 @@ services:
 
   database:
 
-    image: "${DOCKERHUB_USER}/${DATABASE_VERSION}:latest"
+    # image: "${DOCKERHUB_USER}/${DATABASE_VERSION}:latest"
 
-    # build:
-    #   context: ./bin/${DATABASE_VERSION}
+    build:
+      context: ./bin/${DATABASE_VERSION}
 
     container_name: "${COMPOSE_PROJECT_NAME}-${DATABASE_VERSION}"
 
