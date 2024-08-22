@@ -10,6 +10,8 @@ services:
     build:
       context: ./bin/${WEBSERVER_VERSION}
 
+    working_dir: /shared/www
+
     container_name: "${COMPOSE_PROJECT_NAME}-${WEBSERVER_VERSION}"
 
     restart: "always"
@@ -22,7 +24,7 @@ services:
       - database
 
     volumes:
-      - ${DOCUMENT_ROOT}:/var/www/html:ro
+      - ${DOCUMENT_ROOT}:/var/www/html:rw
       - ${SHARED_ROOT}:/shared/www:rw
       - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
       - ${SSL_DIR-./config/ssl}:/etc/apache2/ssl/

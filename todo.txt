@@ -1,10 +1,11 @@
 +   webserver splashscreen
 +   install node & npm
++   install sass
++   modifica workdir folder
 
 
 
 
 
--   install sass
 -   dashboard
 -   push new docker images (database & webserver)

@@ -19,7 +19,9 @@
                 npm - <?php echo shell_exec('npm -v 2>&1'); ?>
             </h1>
 
-    
+            <h1>
+                sass - <?php echo shell_exec('sass --version 2>&1'); ?>
+            </h1>
         </main>
     </body>
 

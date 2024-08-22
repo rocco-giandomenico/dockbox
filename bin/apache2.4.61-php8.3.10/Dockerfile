@@ -84,9 +84,10 @@ RUN a2enmod rewrite headers
 # Create shared folder
 RUN mkdir -p /shared/www
 
-# Install node 20
+# Install node - npm - sass
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs
+    apt-get install -y nodejs && \
+    npm install -g sass
 
 # Add splash screen
 RUN bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" && \
