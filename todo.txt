@@ -8,4 +8,14 @@
 
 
 -   dashboard
+    -   la dashboard deve indicare le versioni di php, mysql o mariadb, apache
+    -   la dashboard deve avere una lista di plugin installati (node, npm, sass)
+    -   la dashboard deve avere un header
+    -   la dashboard deve avere il tema dark/ligth intercambiabile
+    -   Modificare font (Montserrat)
+
+
+
+
+
 -   push new docker images (database & webserver)

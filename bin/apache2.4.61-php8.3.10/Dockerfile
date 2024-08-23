@@ -13,7 +13,7 @@ RUN apt-get -y update --fix-missing && \
 
 # Install useful tools and install important libaries
 RUN apt-get -y update && \
-    apt-get -y --no-install-recommends install nano vim figlet wget dialog libsqlite3-dev libsqlite3-0 && \
+    apt-get -y --no-install-recommends install nano vim wget dialog libsqlite3-dev libsqlite3-0 && \
     apt-get -y --no-install-recommends install default-mysql-client zlib1g-dev libzip-dev libicu-dev && \
     apt-get -y --no-install-recommends install --fix-missing apt-utils build-essential git curl libonig-dev && \ 
     apt-get install -y iputils-ping && \
@@ -90,9 +90,11 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     npm install -g sass
 
 # Add splash screen
+COPY bash-dockbox /etc
+
 RUN bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" && \
     sed -i 's/OSH_THEME=.*/OSH_THEME="zork"/' ~/.bashrc && \
-    echo 'clear\nfiglet dockBox' >> ~/.bashrc
+    echo '. /etc/bash-dockbox' >> ~/.bashrc
 
 # Cleanup
 RUN rm -rf /usr/src/*
