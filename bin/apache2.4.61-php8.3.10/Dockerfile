@@ -81,8 +81,16 @@ RUN a2enmod ssl && a2enmod rewrite
 # Enable apache modules
 RUN a2enmod rewrite headers
 
-# Create shared folder
-RUN mkdir -p /shared/www
+# Create UID, GID and shared folder
+ARG USER_ID
+ARG GROUP_ID
+ARG UNAME
+
+RUN groupadd -g ${GROUP_ID} ${UNAME} && \
+    useradd -m -u ${USER_ID} -g ${GROUP_ID} ${UNAME}
+
+RUN mkdir -p /shared/www && \
+    chown ${UNAME}:${UNAME} /shared/www
 
 # Install node - npm - sass
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
@@ -92,11 +100,12 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
 # Add splash screen
 COPY bash-dockbox /etc
 
-RUN bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)" && \
-    sed -i 's/OSH_THEME=.*/OSH_THEME="zork"/' ~/.bashrc && \
-    echo '. /etc/bash-dockbox' >> ~/.bashrc
+RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --prefix=/usr/local && \
+    sed -i 's/OSH_THEME=.*/OSH_THEME="zork"/' /usr/local/share/oh-my-bash/bashrc && \
+    echo '. /etc/bash-dockbox' >> /usr/local/share/oh-my-bash/bashrc && \
+    cp /usr/local/share/oh-my-bash/bashrc ~/.bashrc && \ 
+    cp /usr/local/share/oh-my-bash/bashrc /home/${UNAME}/.bashrc
 
 # Cleanup
 RUN rm -rf /usr/src/*
-
-WORKDIR /the/workdir/path
+WORKDIR /shared/www
