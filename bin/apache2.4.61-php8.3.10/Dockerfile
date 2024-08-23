@@ -98,3 +98,5 @@ RUN bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master
 
 # Cleanup
 RUN rm -rf /usr/src/*
+
+WORKDIR /the/workdir/path
