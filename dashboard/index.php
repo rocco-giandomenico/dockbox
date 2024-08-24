@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="color-scheme" content="light dark">
         <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
-        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/main.css">
         <title>dockBox</title>
     </head>
 
@@ -20,8 +20,13 @@
             </h1>
 
             <h1>
-                sass - <?php echo shell_exec('sass --version 2>&1'); ?>
+                yarn - <?php echo shell_exec('yarn -v 2>&1'); ?>
             </h1>
+
+            <h1>
+                git - <?php echo shell_exec('git --version 2>&1'); ?>
+            </h1>
+
         </main>
     </body>
 

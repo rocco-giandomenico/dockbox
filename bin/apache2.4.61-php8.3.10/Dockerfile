@@ -52,7 +52,6 @@ RUN cd /usr/local/src && \
     docker-php-ext-enable imagick
 
 # Other PHP8 Extensions
-
 RUN docker-php-ext-install pdo_mysql && \
     docker-php-ext-install pdo_sqlite && \
     docker-php-ext-install bcmath && \
@@ -92,10 +91,10 @@ RUN groupadd -g ${GROUP_ID} ${UNAME} && \
 RUN mkdir -p /shared/www && \
     chown ${UNAME}:${UNAME} /shared/www
 
-# Install node - npm - sass
+# Install node - npm - yarn
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs && \
-    npm install -g sass
+    npm install -g yarn
 
 # Add splash screen
 COPY bash-dockbox /etc
