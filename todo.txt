@@ -1,21 +1,22 @@
 +   webserver splashscreen
 +   install node & npm
 +   install sass
-+   modifica workdir folder
++   modify workdir folder
 
 
 
 
 
 -   dashboard
-    -   la dashboard deve indicare le versioni di php, mysql o mariadb, apache
-    -   la dashboard deve avere una lista di plugin installati (node, npm, sass)
-    -   la dashboard deve avere un header
-    -   la dashboard deve avere il tema dark/ligth intercambiabile
-    -   Modificare font (Montserrat)
+    -   The dashboard need report the versions of php, webserver and database
+    -   The dashboard need to have a list of installed tools (node, npm, yarn, git)
+    -   The dashboard need to have a header
+    -   The dashboard need to have a dark/ligth theme
 
 
 
 
 
 -   push new docker images (database & webserver)
+-   Picocss produce unwanted warnings when you launch 'yarn watch:sass'.
+    You need to update it when this bug will be fixed.
