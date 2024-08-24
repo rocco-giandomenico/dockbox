@@ -24,13 +24,13 @@ services:
       - database
 
     volumes:
-      - ${DOCUMENT_ROOT}:/var/www/html:rw
-      - ${SHARED_ROOT}:/shared/www:rw
-      - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
-      - ${SSL_DIR-./config/ssl}:/etc/apache2/ssl/
-      - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
-      - ${LOG_DIR-./logs/apache2}:/var/log/apache2
-      - ${XDEBUG_LOG_DIR-./logs/xdebug}:/var/log/xdebug
+      - ${DOCUMENT_ROOT}:${APACHE_DOCUMENT_ROOT}:rw
+      - ${SHARED_ROOT}:${APACHE_SHARED_ROOT}:rw
+      - ${PHP_INI}:/usr/local/etc/php/php.ini
+      - ${SSL_DIR}:/etc/apache2/ssl/
+      - ${VHOSTS_DIR}:/etc/apache2/sites-enabled
+      - ${APACHE_LOG_DIR}:/var/log/apache2
+      - ${XDEBUG_LOG_DIR}:/var/log/xdebug
 
     environment:
       APACHE_DOCUMENT_ROOT: ${APACHE_DOCUMENT_ROOT}

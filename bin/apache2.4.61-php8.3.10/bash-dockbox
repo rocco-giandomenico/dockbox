@@ -15,3 +15,14 @@ echo "        https://github.com/rocco-giandomenico/dockbox        "
 echo
 echo "-------------------------------------------------------------"
 echo
+echo "Project base directory  -  "$APACHE_SHARED_ROOT
+echo "Dashboard directory     -  "$APACHE_DOCUMENT_ROOT
+echo "Virtual host directory  -  /etc/apache2/sites-enabled"        
+echo "Apache log directory    -  /var/log/apache2"
+echo "PHP directory           -  /usr/local/etc/php/"
+echo "SSL directory           -  /etc/apache2/ssl/"
+echo "Xdebug log directory    -  /var/log/xdebug"
+echo
+echo "-------------------------------------------------------------"
+echo
+
