@@ -25,7 +25,7 @@
         </main>
     </body>
 
-    <!-- <body>
+    <body>
         <section class="hero is-medium is-info is-bold">
             <div class="hero-body">
                 <div class="container has-text-centered">
@@ -86,6 +86,6 @@
                 </p>
             </div>
         </footer>
-    </body> -->
+    </body>
 
 </html>
