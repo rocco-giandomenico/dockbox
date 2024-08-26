@@ -87,7 +87,7 @@
             <div class="content has-text-centered">
                 <p>
                     <strong><a href="" target="_blank">OctoLab</a></strong><br>
-                    The source code is released under the <a href="" target="_blank">MIT license</a>.
+                    The source code is released under the <a href="https://github.com/rocco-giandomenico/dockbox/blob/main/LICENSE" target="_blank">MIT license</a>.
                 </p>
             </div>
         </footer>
