@@ -8,10 +8,11 @@
 
 
 -   dashboard
+    -   Make Header
+    -   The dashboard need to have a dark/ligth theme
     -   The dashboard need report the versions of php, webserver and database
     -   The dashboard need to have a list of installed tools (node, npm, yarn, git)
     -   The dashboard need to have a header
-    -   The dashboard need to have a dark/ligth theme
 
 
 
