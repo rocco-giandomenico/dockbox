@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="ligth">
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,14 @@
     </head>
 
     <body>
+
+        <header class="container">
+            <img src="../assets/images/logo_dark.svg" alt="Esempio di Immagine" class="responsive">
+        </header>
+
         <main class="container">
+
+
             <h1>
                 node - <?php echo shell_exec('node -v 2>&1'); ?>
             </h1>
@@ -83,7 +90,7 @@
                 </div>
             </div>
         </section>
-        <footer class="footer">
+        <footer class="container">
             <div class="content has-text-centered">
                 <p>
                     <strong><a href="" target="_blank">OctoLab</a></strong><br>
