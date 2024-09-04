@@ -1,8 +1,9 @@
 # dockBox
 dockBox is a local development environment based on Docker, designed to facilitate web development across multiple platforms.
 
+&nbsp;
 
-## How to install
+## Installation
 ```bash
 git clone https://github.com/rocco-giandomenico/dockbox.git
 cd dockbox
