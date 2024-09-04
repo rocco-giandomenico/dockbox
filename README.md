@@ -1,5 +1,5 @@
 # dockBox
-dockBox is a local development environment based on Docker, designed to facilitate web development across multiple platforms.
+DockBox is a simple local development environment based on Docker, designed to facilitate web development across multiple platforms.
 
 &nbsp;
 
