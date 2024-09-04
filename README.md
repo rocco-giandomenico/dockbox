@@ -1,4 +1,4 @@
-# dockbox
+# dockBox
 
 ```bash
 git clone https://github.com/rocco-giandomenico/dockbox.git
