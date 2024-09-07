@@ -1,0 +1,38 @@
+// -----------------------------------------------------------------------------
+// VARIABLES
+
+// Light color scheme (Default)
+// Can be forced with data-theme="light"
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+    --pico-header-underline: rgba(55, 60, 68, .1);
+    --pico-background-secondary: #fcfcfc;
+}
+
+// Dark color scheme (Auto)
+// Automatically enabled if user has Dark mode enabled
+@media only screen and (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --pico-header-underline: rgba(194, 199, 208, .1);
+        --pico-background-secondary: #141921;
+    }
+}
+  
+// Dark color scheme (Forced)
+// Enabled if forced with data-theme="dark"
+[data-theme="dark"] {
+    --pico-header-underline: rgba(194, 199, 208, .1);
+    --pico-background-secondary: #141921;
+}
+
+// -----------------------------------------------------------------------------
+// STYLE
+
+header{
+    border-bottom: 1px solid var(--pico-header-underline);
+}
+
+main{
+    background-color: var(--pico-background-secondary);
+    min-height: 100vh;
+}
