@@ -10,3 +10,8 @@ cd dockbox
 cp sample.env .env
 docker compose up -d
 ```
+&nbsp;
+
+## License
+
+**[MIT License](LICENSE.md)**

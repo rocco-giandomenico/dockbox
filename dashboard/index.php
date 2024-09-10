@@ -1,19 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="ligth">
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="color-scheme" content="light dark">
         <link rel="shortcut icon" href="/assets/images/favicon_azure.svg" type="image/svg+xml">
         <link rel="stylesheet" href="/assets/css/main.css">
+        <script src="/assets/js/dashboard.js"></script>
         <title>dockBox</title>
     </head>
 
-    <body>
+    <body class="hidden">
 
         <header>
             <div class="container">
                 <img src="../assets/images/favicon_azure.svg" alt="Esempio di Immagine" class="responsive">
+                <nav>
+                    <ul>
+                        <li><a href="/phpinfo.php" class="contrast">PhpInfo</a></li>
+                        <li><a href="/test_db.php" class="contrast">mysqli</a></li>
+                        <li><a href="/test_db_pdo.php" class="contrast">PDO</a></li>
+                    </ul>
+                    <ul class="icons">
+                        <li><a href="https://github.com/rocco-giandomenico/dockbox" target="_blank" class="contrast"><div class="icon git"></div></a></li>
+                        <li><a id="theme_toggle" href="#" class="contrast"><div class="icon"></div></a></li>
+                    </ul>
+                </nav>
             </div>
         </header>
 
@@ -76,13 +88,6 @@
                             <div class="column">
                                 <h3 class="title is-3 has-text-centered">Quick Links</h3>
                                 <hr>
-                                <div class="content">
-                                    <ul>
-                                        <li><a href="/phpinfo.php">phpinfo()</a></li>
-                                        <li><a href="/test_db.php">Test DB Connection with mysqli</a></li>
-                                        <li><a href="/test_db_pdo.php">Test DB Connection with PDO</a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -28,11 +28,64 @@
 // -----------------------------------------------------------------------------
 // STYLE
 
+body.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body:not(.hidden) {
+    visibility: visible;
+    opacity: 1;
+}
+
 header{
+    .container{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+
+        li{
+            display: flex;
+            align-items:center;
+            justify-content: space-between;
+            gap: var(--pico-nav-element-spacing-horizontal);
+        }
+
+        .icons{
+            display: flex;
+            align-items: center;
+
+            &::before {
+                content: '';
+                height: 30px;
+                border-left: 1px solid var(--pico-header-underline);
+
+            }
+
+            a{
+                padding: 0
+            }
+        }
+
+        
+    }
+
     border-bottom: 1px solid var(--pico-header-underline);
 }
 
 main{
     background-color: var(--pico-background-secondary);
     min-height: 100vh;
+}
+
+.icon{
+    mask-image: url('../images/icons.svg');
+    height: 22px;
+    width: 22px;
+    background-color: var(--pico-color);
+
+    &.sun{mask-position: 0px 0px;}
+    &.moon{mask-position: 0px -22px;}
+    &.git{mask-position: 0px -44px}
 }
