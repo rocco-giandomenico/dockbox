@@ -23,7 +23,7 @@
                     </ul>
                     <ul class="icons">
                         <li><a href="https://github.com/rocco-giandomenico/dockbox" target="_blank" class="contrast"><div class="icon git"></div></a></li>
-                        <li><a id="theme_toggle" href="#" class="contrast"><div class="icon <?php echo !empty($_COOKIE['theme']) ? ($_COOKIE['theme'] == 'ligth' ? 'moon' : 'sun') : 'sun'; ?>"></div></a></li>
+                        <li><a id="theme_toggle" href="#" class="contrast"><div class="icon <?php echo !empty($_COOKIE['theme']) ? 'toggle_' . $_COOKIE['theme'] : 'toggle_dark'; ?>"></div></a></li>
                     </ul>
                 </nav>
             </div>
@@ -102,10 +102,6 @@
                 </footer>
             </div>
         </main>
-
-
-            
-        
     </body>
 
 </html>

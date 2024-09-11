@@ -72,7 +72,7 @@ main{
     width: 22px;
     background-color: var(--pico-color);
 
-    &.sun{mask-position: 0px 0px;}
-    &.moon{mask-position: 0px -22px;}
+    &.toggle_dark{mask-position: 0px 0px;}
+    &.toggle_ligth{mask-position: 0px -22px;}
     &.git{mask-position: 0px -44px}
 }

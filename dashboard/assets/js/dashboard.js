@@ -19,28 +19,25 @@ function toggleTheme() {
 // Set Theme
 function setTheme(newTheme) {
 
-    // get expiration time
-    let now = new Date()
-    const expireTime  = now.getTime() + 200000000000
-    now.setTime(expireTime)
-
-    // get theme
+    // Get theme and set toggle icons
     const el = document.getElementById('theme_toggle').children[0]
 
-    // set togglr icon
     if(newTheme == 'dark') {
 
-        el.classList.remove('moon')
-        el.classList.add('sun')
+        el.classList.remove('toggle_ligth')
+        el.classList.add('toggle_dark')
 
     } else {
 
-        el.classList.remove('sun')
-        el.classList.add('moon')
+        el.classList.remove('toggle_dark')
+        el.classList.add('toggle_ligth')
 
     }
 
-    // set cookie and theme
-    document.cookie = 'theme=' + newTheme + '; expires=' + now.toUTCString()
+    // Get expiration time () and set cookie/theme
+    const date = new Date()
+    date.setDate(date.getDate() + 400)
+
+    document.cookie = 'theme=' + newTheme + '; expires=' + date.toUTCString()
     document.documentElement.setAttribute('data-theme', newTheme)
 }
