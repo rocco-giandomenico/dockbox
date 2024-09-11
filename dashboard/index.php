@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="<?php echo !empty($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark' ; ?>">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,7 @@
         <title>dockBox</title>
     </head>
 
-    <body class="hidden">
+    <body>
 
         <header>
             <div class="container">
@@ -23,7 +23,7 @@
                     </ul>
                     <ul class="icons">
                         <li><a href="https://github.com/rocco-giandomenico/dockbox" target="_blank" class="contrast"><div class="icon git"></div></a></li>
-                        <li><a id="theme_toggle" href="#" class="contrast"><div class="icon"></div></a></li>
+                        <li><a id="theme_toggle" href="#" class="contrast"><div class="icon <?php echo !empty($_COOKIE['theme']) ? ($_COOKIE['theme'] == 'ligth' ? 'moon' : 'sun') : 'sun'; ?>"></div></a></li>
                     </ul>
                 </nav>
             </div>

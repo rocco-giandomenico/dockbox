@@ -12,6 +12,7 @@
 -   dashboard
     -   The dashboard need report the versions of php, webserver and database
     -   The dashboard need to have a list of installed tools (node, npm, yarn, git)
+    -   Tabler icons 
 
 
 

@@ -1,9 +1,6 @@
 // On window load
 window.addEventListener('load', function() {
 
-    const newTheme = localStorage.getItem('theme') || document.documentElement.getAttribute('data-theme')
-    setTheme(newTheme)
-
     // theme toggle
     document.getElementById('theme_toggle').addEventListener('click', function() {
         toggleTheme()
@@ -12,17 +9,25 @@ window.addEventListener('load', function() {
 
 // -----------------------------------------------------------------------------
 
+// Toggle Theme
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme')
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+    const newTheme = currentTheme === 'dark' ? 'ligth' : 'dark'
     setTheme(newTheme)
-
-    
 }
 
+// Set Theme
 function setTheme(newTheme) {
+
+    // get expiration time
+    let now = new Date()
+    const expireTime  = now.getTime() + 200000000000
+    now.setTime(expireTime)
+
+    // get theme
     const el = document.getElementById('theme_toggle').children[0]
 
+    // set togglr icon
     if(newTheme == 'dark') {
 
         el.classList.remove('moon')
@@ -35,7 +40,7 @@ function setTheme(newTheme) {
 
     }
 
-    localStorage.setItem('theme', newTheme)
+    // set cookie and theme
+    document.cookie = 'theme=' + newTheme + '; expires=' + now.toUTCString()
     document.documentElement.setAttribute('data-theme', newTheme)
-    document.body.classList.remove('hidden')
 }
