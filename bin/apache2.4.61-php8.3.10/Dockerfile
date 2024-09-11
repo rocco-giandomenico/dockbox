@@ -91,10 +91,12 @@ RUN groupadd -g ${GROUP_ID} ${UNAME} && \
 RUN mkdir -p /shared/www && \
     chown ${UNAME}:${UNAME} /shared/www
 
-# Install node - npm - yarn
+# Install node / npm / yarn / gulp-cli
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs && \
+    npm install --global gulp-cli && \
     npm install -g yarn
+
 
 # Add splash screen
 COPY bash-dockbox /etc

@@ -47,6 +47,10 @@
                     git - <?php echo shell_exec('git --version 2>&1'); ?>
                 </h1>
 
+                <h1>
+                    gulp - <?php echo shell_exec('gulp --version 2>&1'); ?>
+                </h1>
+
                 <section class="hero is-medium is-info is-bold">
                     <div class="hero-body">
                         <div class="container has-text-centered">
