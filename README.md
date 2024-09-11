@@ -13,6 +13,13 @@ cp sample.env .env
 docker compose up -d
 ```
 
+```bash
+docker compose exec --user dockbox webserver bash -l
+
+cd ../../var/www/html
+yarn install
+```
+
 &nbsp;
 
 <!-- ----------------------------------------------------------------------- -->
