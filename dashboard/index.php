@@ -51,18 +51,6 @@
                     gulp - <?php echo shell_exec('gulp --version 2>&1'); ?>
                 </h1>
 
-                <section class="hero is-medium is-info is-bold">
-                    <div class="hero-body">
-                        <div class="container has-text-centered">
-                            <h1 class="title">
-                                dockBox
-                            </h1>
-                            <h2 class="subtitle">
-                                Your local development environment
-                            </h2>
-                        </div>
-                    </div>
-                </section>
                 <section class="section">
                     <div class="container">
                         <div class="columns">

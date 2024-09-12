@@ -4,13 +4,14 @@
 +   modify workdir folder
 +   Make Header
 +   The dashboard need to have a dark/ligth theme
++   add gulp
 
 
 
 
 
 -   dashboard
-    -   The dashboard need report the versions of php, webserver and database
+    -   Table of enviroment (php, mysql, apache)
     -   The dashboard need to have a list of installed tools (node, npm, yarn, git)
     -   Tabler icons 
 
