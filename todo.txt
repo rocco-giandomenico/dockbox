@@ -11,6 +11,8 @@
 
 
 -   dashboard
+    -   create a html.php and include in index.php
+    -   create a getheader function
     -   Table of enviroment (php, mysql, apache)
     -   The dashboard need to have a list of installed tools (node, npm, yarn, git)
     -   Tabler icons 
