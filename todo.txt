@@ -10,6 +10,8 @@
 
 
 -   dashboard
+    -   create a html.php and include in index.php
+    -   create a getheader function
     -   The dashboard need report the versions of php, webserver and database
     -   The dashboard need to have a list of installed tools (node, npm, yarn, git)
     -   Tabler icons 
