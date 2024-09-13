@@ -22,17 +22,8 @@ function setTheme(newTheme) {
     // Get theme and set toggle icons
     const el = document.getElementById('theme_toggle').children[0]
 
-    if(newTheme == 'dark') {
-
-        el.classList.remove('toggle_ligth')
-        el.classList.add('toggle_dark')
-
-    } else {
-
-        el.classList.remove('toggle_dark')
-        el.classList.add('toggle_ligth')
-
-    }
+    el.classList.toggle('dark')
+    el.classList.toggle('ligth')
 
     // Get expiration time () and set cookie/theme
     const date = new Date()

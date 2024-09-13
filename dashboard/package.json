@@ -5,10 +5,9 @@
   "license": "MIT",
   "main": "index.html",
   "scripts": {
-    "watch-sass": "sass -I node_modules/@picocss/pico/scss/ -s compressed -w assets/scss:assets/css  --silence-deprecation mixed-decls"
+    "watch-sass": "sass -I node_modules/@picocss/pico/scss/ -s compressed -w src/scss:public/css"
   },
   "devDependencies": {
-    "@picocss/pico": "^2.0.6",
     "gulp": "^5.0.0",
     "sass": "^1.77.8"
   },

@@ -1,33 +1,21 @@
+<? require_once 'php/library.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en" data-theme="<?php echo !empty($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark' ; ?>">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="color-scheme" content="light dark">
-        <link rel="shortcut icon" href="/assets/images/favicon_azure.svg" type="image/svg+xml">
-        <link rel="stylesheet" href="/assets/css/main.css">
-        <script src="/assets/js/dashboard.js"></script>
+        <link rel="shortcut icon" href="/public/images/favicon_azure.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="/public/css/main.css">
+        <script src="/public/js/main.js"></script>
         <title>dockBox</title>
     </head>
 
     <body>
 
-        <header>
-            <div class="container">
-                <img src="../assets/images/favicon_azure.svg" alt="Esempio di Immagine" class="responsive">
-                <nav>
-                    <ul>
-                        <li><a href="/phpinfo.php" class="contrast">PhpInfo</a></li>
-                        <li><a href="/test_db.php" class="contrast">mysqli</a></li>
-                        <li><a href="/test_db_pdo.php" class="contrast">PDO</a></li>
-                    </ul>
-                    <ul class="icons">
-                        <li><a href="https://github.com/rocco-giandomenico/dockbox" target="_blank" class="contrast"><div class="icon git"></div></a></li>
-                        <li><a id="theme_toggle" href="#" class="contrast"><div class="icon <?php echo !empty($_COOKIE['theme']) ? 'toggle_' . $_COOKIE['theme'] : 'toggle_dark'; ?>"></div></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        <? echo getHeader(); ?>
+
 
         <main>
             <div class="container">
