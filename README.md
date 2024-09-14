@@ -18,6 +18,8 @@ docker compose exec --user dockbox webserver bash -l
 
 cd ../../var/www/html
 yarn install
+
+gulp
 ```
 
 &nbsp;
