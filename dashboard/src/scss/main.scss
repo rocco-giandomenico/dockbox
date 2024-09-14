@@ -1,5 +1,4 @@
 @use 'reset';
-@use 'theme_colors';
 
 @font-face {
     font-family: 'Plus Jakarta Sans';
@@ -13,7 +12,7 @@
 // Variables
 
 :root{
-    --base-font-size: clamp(16px, 1.875vw, 24px);
+    --base-font-size: clamp(18px, 1.875vw, 24px);
     --half-font-size: calc(clamp(16px, 1.875vw, 24px) / 2);
 }
 
@@ -75,7 +74,7 @@ nav{
     .logo{
         width: 100px;
         height: 100px;
-        background-image: url('../images/favicon_azure.svg');
+        background-image: url('../img/favicon_azure.svg');
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
@@ -103,7 +102,7 @@ nav{
             .icon{
                 width: 30px;
                 height: 30px;
-                mask-image: url('../images/icons.svg');
+                mask-image: url('../img/icons.svg');
                 background-color: var(--base-color);
                 transform: scale(1);
             
