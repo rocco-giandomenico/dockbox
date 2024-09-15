@@ -1,18 +1,10 @@
-+   webserver splashscreen
-+   install node & npm
-+   install sass
-+   modify workdir folder
-+   Make Header
-+   The dashboard need to have a dark/ligth theme
-+   add gulp
++   dashboard
 
 
 
 
 
--   dashboard
-    -   Table of enviroment (php, mysql, apache)
-    -   The dashboard need to have a list of installed tools (node, npm, yarn, git)
+-   virtual host page
 
 
 

@@ -45,6 +45,7 @@
     --base-background-header: rgb(255,255,255);
     --base-color: rgb(41, 52, 61);
     --base-separator: rgb(229, 231, 235);
+    --box-shadow: rgba(175, 182, 201, 0.2);
 }
 
 @media only screen and (prefers-color-scheme: dark) {
@@ -244,6 +245,7 @@ span{
     flex-direction: column;
     justify-content: center;
     gap: var(--0_5fs);
+    box-shadow: 0px 2px 4px -1px var(--box-shadow);
 
     h2{
         font-size: var(--0_75fs);
@@ -263,6 +265,7 @@ span{
     position: absolute;
     background-color: var(--base-background-header);
     border: 1px solid var(--base-separator);
+    box-shadow: 0px 2px 4px -1px var(--box-shadow);
     border-radius: var(--0_25fs);
     z-index: 1;
 }
