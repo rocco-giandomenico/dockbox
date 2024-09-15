@@ -10,7 +10,7 @@ function getHeader() {
                 <nav>
                     <a href="#"><div class="logo"></div></a>
                     
-                    <ul>
+                    <ul class="mobile">
                         <li>
                             <ul>
                                 <li><a href="#">Home</a></li>
@@ -27,7 +27,7 @@ function getHeader() {
                                 </li>
                             </ul>
                         </li>
-                        <li><div class="separator"></div></li>
+                        <li class="no_mobile"><div class="separator"></div></li>
                         <li>
                             <ul class="compact">
                                 <li><a href="https://github.com/rocco-giandomenico/dockbox" target="_blank"><div class="icon git"></div></a></li>

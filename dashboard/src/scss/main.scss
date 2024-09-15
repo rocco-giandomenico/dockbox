@@ -12,12 +12,31 @@
 // Theme
 
 :root{
-    --double-font-size: calc(clamp(18px, 1.875vw, 24px) * 2);
-    --base-font-size: clamp(18px, 1.875vw, 24px);
-    --half-font-size: calc(clamp(16px, 1.875vw, 24px) / 2);
-    --quarter-font-size: calc(clamp(16px, 1.875vw, 24px) / 4);
-    --min-menu-width: calc(clamp(16px, 1.875vw, 24px) * 8);
-    --base-radius: 5px;
+    --azure: rgb(1, 127, 192);
+    --base-size: 1280px;
+    --min-size: 480px;
+    --fs: clamp(18px, 1.875vw, 24px);
+
+    --8fs: 8rem;
+    --2fs: 2rem;
+    --1_5fs: 1.5rem;
+    
+    --0_75fs: 0.75rem;
+    --0_6fs: 0.6rem;
+    --0_5fs: 0.5rem;
+    --0_25fs: 0.25rem;
+
+    --w100: 100;
+    --w200: 200;
+    --w300: 300;
+    --w400: 400;
+    --w500: 500;
+    --w600: 600;
+    --w700: 700;
+    --w800: 800;
+    --w900: 900;
+
+    --color-error: rgb(217, 53, 38);
 }
 
 [data-theme="light"],
@@ -48,7 +67,7 @@
 // CSS
 
 html {
-    font-size: var(--base-font-size);
+    font-size: var(--fs);
 }
 
 body{
@@ -58,10 +77,15 @@ body{
     font-size: 1rem;
     background-color: var(--base-background-color);
     color: var(--base-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header{
-    padding: var(--base-font-size) 0;
+    position: sticky;
+    top: 0;
+    padding: var(--fs) 0;
     background-color: var(--base-background-header);
     display: flex;
     align-items: center;
@@ -70,10 +94,28 @@ header{
 }
 
 main{
-    padding: var(--base-font-size) 0;
+    padding: var(--fs) 0;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex: 1;
+}
+
+footer{
+    padding: var(--fs) 0;
+    background-color: var(--base-background-header);
     display: flex;
     align-items: center;
     justify-content: center;
+
+    a{
+        color: var(--azure);
+        font-weight: var(--w600);
+    
+        &:hover{
+            text-decoration: underline;
+        }
+    }
 }
 
 nav{
@@ -93,9 +135,9 @@ nav{
 
     ul{
         display: flex;
-        gap: var(--base-font-size);
+        gap: var(--fs);
 
-        &.compact{gap: var(--half-font-size)}
+        &.compact{gap: var(--0_5fs)}
 
         li{
             display: flex;
@@ -116,7 +158,7 @@ nav{
 
             .icon{
 
-                --size: calc(var(--base-font-size) * 1.25);
+                --size: calc(var(--fs) * 1.25);
 
                 width: var(--size);
                 height: var(--size);
@@ -138,9 +180,75 @@ nav{
     }
 }
 
+table{
+    width: 100%;
+    font-size: var(--0_6fs);
+    box-shadow: 0px 0px 0px 1px var(--base-separator);
+
+    tr{
+        &.even{
+            background-color: var(--base-background-color);
+        }
+
+        td{
+            padding: var(--0_5fs);
+            box-shadow: 1px 0px 0px 0px var(--base-separator);
+        }
+    }
+}
+
+span{
+    &.small{
+        font-size: var(--0_75fs);
+        font-weight: var(--w200);
+    }
+    &.error{color: var(--color-error);}
+}
+
+.hidden{
+    display: none;
+}
+
+.justify_between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex_column{
+    display: flex;
+    flex-direction: column;
+}
+
 .container{
-    margin: 0 var(--double-font-size);
-    width: 1280px;
+    margin: 0 var(--2fs);
+    width: var(--base-size);
+}
+
+.grid{
+    display: flex;
+    justify-content: space-between;
+    gap: var(--0_5fs);
+}
+
+.column{
+    flex: 1;
+}
+
+.card{
+    padding: var(--fs);
+    width: 100%;
+    border-radius: var(--0_25fs);
+    background-color: var(--base-background-header);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--0_5fs);
+
+    h2{
+        font-size: var(--0_75fs);
+        font-weight: 600;
+    }
 }
 
 .dropdown {
@@ -149,19 +257,19 @@ nav{
 }
 
 .dropdown-content {
-    margin-top: var(--half-font-size);
-    min-width: var(--min-menu-width);
-    padding: var(--half-font-size) var(--quarter-font-size);
+    margin-top: var(--0_5fs);
+    min-width: var(--8fs);
+    padding: var(--0_5fs) var(--0_25fs);
     position: absolute;
     background-color: var(--base-background-header);
     border: 1px solid var(--base-separator);
-    border-radius: var(--base-radius);
+    border-radius: var(--0_25fs);
     z-index: 1;
 }
 
 .dropdown-content{
     a{
-        padding: var(--half-font-size);
+        padding: var(--0_5fs);
         text-decoration: none;
         display: block;
 
@@ -171,9 +279,49 @@ nav{
     }
 }
 
-.hidden{
-    display: none;
+// -----------------------------------------------------------------------------
+
+@media (max-width: 767px) {
+
+    body{
+        min-width: var(--min-size);
+    }
+
+    nav{
+        flex-direction: column;
+        gap: var(--fs);
+
+        ul{
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .grid{
+        flex-direction: column;
+    }
+
+    .justify_between{
+        flex-direction: column;
+    }
+
+    .flex_column{
+        align-items: center;
+    }
+
+    .no_mobile{
+        display: none;
+    }
+
+    .mobile{
+        display: flex;
+        flex-direction: column;
+    }
 }
+
+
+
+
 
 
 
