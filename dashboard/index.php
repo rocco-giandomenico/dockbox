@@ -40,7 +40,7 @@
                 </h1>
 
                 <section class="section">
-                    <div class="container">
+                    <div class="">
                         <div class="columns">
                             <div class="column">
                                 <h3 class="title is-3 has-text-centered">Environment</h3>
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </section>
-                <footer class="container">
+                <footer class="">
                     <div class="content has-text-centered">
                         <p>
                             <strong><a href="" target="_blank">OctoLab</a></strong><br>

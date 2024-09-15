@@ -1,26 +1,38 @@
 // On window load
 window.addEventListener('load', function() {
 
-    // theme toggle
-    document.getElementById('theme_toggle').addEventListener('click', function() {
-        toggleTheme()
+    window.addEventListener('click', function(e) {
+
+        switch(e.target.dataset.type) {
+            case 'theme_toggle':
+                resetMenu()
+                toggleTheme(e.target)
+                break
+            
+            case 'dropdown':
+                menuToggle(e.target)
+                break
+
+            default:
+                resetMenu()
+                break
+        }
+        
     })
+
 })
 
 // -----------------------------------------------------------------------------
 
 // Toggle Theme
-function toggleTheme() {
+function toggleTheme(el) {
     const currentTheme = document.documentElement.getAttribute('data-theme')
     const newTheme = currentTheme === 'dark' ? 'ligth' : 'dark'
-    setTheme(newTheme)
+    setTheme(newTheme, el)
 }
 
 // Set Theme
-function setTheme(newTheme) {
-
-    // Get theme and set toggle icons
-    const el = document.getElementById('theme_toggle').children[0]
+function setTheme(newTheme, el) {
 
     el.classList.toggle('dark')
     el.classList.toggle('ligth')
@@ -31,4 +43,23 @@ function setTheme(newTheme) {
 
     document.cookie = 'theme=' + newTheme + '; expires=' + date.toUTCString()
     document.documentElement.setAttribute('data-theme', newTheme)
+
+}
+
+// Info Menu Toggle
+function menuToggle(el) {
+    el.parentElement.children[1].classList.toggle('hidden')
+    el.classList.toggle('selected')
+}
+
+function resetMenu() {
+
+    const menu_array = document.querySelectorAll('[data-type="dropdown"]')
+
+    menu_array.forEach(e => {
+        e.parentElement.children[1].classList.add('hidden')
+        e.classList.remove('selected')
+    })
+
+
 }

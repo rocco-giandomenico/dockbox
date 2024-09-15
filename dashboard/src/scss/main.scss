@@ -9,11 +9,15 @@
 }
 
 // -----------------------------------------------------------------------------
-// Variables
+// Theme
 
 :root{
+    --double-font-size: calc(clamp(18px, 1.875vw, 24px) * 2);
     --base-font-size: clamp(18px, 1.875vw, 24px);
     --half-font-size: calc(clamp(16px, 1.875vw, 24px) / 2);
+    --quarter-font-size: calc(clamp(16px, 1.875vw, 24px) / 4);
+    --min-menu-width: calc(clamp(16px, 1.875vw, 24px) * 8);
+    --base-radius: 5px;
 }
 
 [data-theme="light"],
@@ -48,7 +52,7 @@ html {
 }
 
 body{
-    font-family: 'Plus Jakarta Sans', system-ui;;
+    font-family: 'Plus Jakarta Sans', system-ui;
     font-weight: 400;
     font-style: normal;
     font-size: 1rem;
@@ -57,12 +61,19 @@ body{
 }
 
 header{
-    padding: var(--base-font-size);
+    padding: var(--base-font-size) 0;
     background-color: var(--base-background-header);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0px 1px 0px 0px var(--base-separator);
+}
+
+main{
+    padding: var(--base-font-size) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 nav{
@@ -93,6 +104,10 @@ nav{
 
             a{
                 opacity: 0.7;
+                &.selected{
+                    text-decoration: underline;
+                    opacity: 1
+                }
                 &:hover{
                     text-decoration: underline;
                     opacity: 1
@@ -100,15 +115,18 @@ nav{
             }
 
             .icon{
-                width: 30px;
-                height: 30px;
+
+                --size: calc(var(--base-font-size) * 1.25);
+
+                width: var(--size);
+                height: var(--size);
                 mask-image: url('../img/icons.svg');
+                mask-size: 100%;
                 background-color: var(--base-color);
-                transform: scale(1);
             
                 &.dark{mask-position: 0px 0px;}
-                &.ligth{mask-position: 0px -30px;}
-                &.git{mask-position: 0px -60px;}
+                &.ligth{mask-position: 0px calc(-1 * var(--size));}
+                &.git{mask-position: 0px calc(-2 * var(--size));}
             }
         }
     }
@@ -121,5 +139,41 @@ nav{
 }
 
 .container{
+    margin: 0 var(--double-font-size);
     width: 1280px;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    margin-top: var(--half-font-size);
+    min-width: var(--min-menu-width);
+    padding: var(--half-font-size) var(--quarter-font-size);
+    position: absolute;
+    background-color: var(--base-background-header);
+    border: 1px solid var(--base-separator);
+    border-radius: var(--base-radius);
+    z-index: 1;
+}
+
+.dropdown-content{
+    a{
+        padding: var(--half-font-size);
+        text-decoration: none;
+        display: block;
+
+        &:hover{
+            background-color: var(--base-background-color);
+        }
+    }
+}
+
+.hidden{
+    display: none;
+}
+
+
+
