@@ -1,0 +1,327 @@
+@use 'reset';
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('../font/PlusJakartaSans-Italic-VariableFont_wght.ttf') format('ttf'),
+         url('../font/PlusJakartaSans-VariableFont_wght.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// -----------------------------------------------------------------------------
+// Theme
+
+:root{
+    --azure: rgb(1, 127, 192);
+    --base-size: 1280px;
+    --min-size: 480px;
+    --fs: clamp(18px, 1.875vw, 24px);
+
+    --8fs: 8rem;
+    --2fs: 2rem;
+    --1_5fs: 1.5rem;
+    
+    --0_75fs: 0.75rem;
+    --0_6fs: 0.6rem;
+    --0_5fs: 0.5rem;
+    --0_25fs: 0.25rem;
+
+    --w100: 100;
+    --w200: 200;
+    --w300: 300;
+    --w400: 400;
+    --w500: 500;
+    --w600: 600;
+    --w700: 700;
+    --w800: 800;
+    --w900: 900;
+
+    --color-error: rgb(217, 53, 38);
+}
+
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+    --base-background-color: rgb(244, 247, 251);
+    --base-background-header: rgb(255,255,255);
+    --base-color: rgb(41, 52, 61);
+    --base-separator: rgb(229, 231, 235);
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --base-background-color: rgb(31, 42, 61);
+        --base-background-header: rgb(26, 37, 55);
+        --base-color: rgb(210, 211, 214);
+        --base-separator: rgb(55, 65, 81);
+    }
+}
+  
+[data-theme="dark"] {
+    --base-background-color: rgb(31, 42, 61);
+    --base-background-header: rgb(26, 37, 55);
+    --base-color: rgb(210, 211, 214);
+    --base-separator: rgb(55, 65, 81);
+}
+
+// -----------------------------------------------------------------------------
+// CSS
+
+html {
+    font-size: var(--fs);
+}
+
+body{
+    font-family: 'Plus Jakarta Sans', system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    background-color: var(--base-background-color);
+    color: var(--base-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header{
+    position: sticky;
+    top: 0;
+    padding: var(--fs) 0;
+    background-color: var(--base-background-header);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 1px 0px 0px var(--base-separator);
+}
+
+main{
+    padding: var(--fs) 0;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex: 1;
+}
+
+footer{
+    padding: var(--fs) 0;
+    background-color: var(--base-background-header);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a{
+        color: var(--azure);
+        font-weight: var(--w600);
+    
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo{
+        width: 100px;
+        height: 100px;
+        background-image: url('../img/favicon_azure.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    ul{
+        display: flex;
+        gap: var(--fs);
+
+        &.compact{gap: var(--0_5fs)}
+
+        li{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            a{
+                opacity: 0.7;
+                &.selected{
+                    text-decoration: underline;
+                    opacity: 1
+                }
+                &:hover{
+                    text-decoration: underline;
+                    opacity: 1
+                }
+            }
+
+            .icon{
+
+                --size: calc(var(--fs) * 1.25);
+
+                width: var(--size);
+                height: var(--size);
+                mask-image: url('../img/icons.svg');
+                mask-size: 100%;
+                background-color: var(--base-color);
+            
+                &.dark{mask-position: 0px 0px;}
+                &.ligth{mask-position: 0px calc(-1 * var(--size));}
+                &.git{mask-position: 0px calc(-2 * var(--size));}
+            }
+        }
+    }
+
+    .separator{
+        width: 1px;
+        height: 100%;
+        background-color: var(--base-separator);
+    }
+}
+
+table{
+    width: 100%;
+    font-size: var(--0_6fs);
+    box-shadow: 0px 0px 0px 1px var(--base-separator);
+
+    tr{
+        &.even{
+            background-color: var(--base-background-color);
+        }
+
+        td{
+            padding: var(--0_5fs);
+            box-shadow: 1px 0px 0px 0px var(--base-separator);
+        }
+    }
+}
+
+span{
+    &.small{
+        font-size: var(--0_75fs);
+        font-weight: var(--w200);
+    }
+    &.error{color: var(--color-error);}
+}
+
+.hidden{
+    display: none;
+}
+
+.justify_between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex_column{
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    margin: 0 var(--2fs);
+    width: var(--base-size);
+}
+
+.grid{
+    display: flex;
+    justify-content: space-between;
+    gap: var(--0_5fs);
+}
+
+.column{
+    flex: 1;
+}
+
+.card{
+    padding: var(--fs);
+    width: 100%;
+    border-radius: var(--0_25fs);
+    background-color: var(--base-background-header);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--0_5fs);
+
+    h2{
+        font-size: var(--0_75fs);
+        font-weight: 600;
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    margin-top: var(--0_5fs);
+    min-width: var(--8fs);
+    padding: var(--0_5fs) var(--0_25fs);
+    position: absolute;
+    background-color: var(--base-background-header);
+    border: 1px solid var(--base-separator);
+    border-radius: var(--0_25fs);
+    z-index: 1;
+}
+
+.dropdown-content{
+    a{
+        padding: var(--0_5fs);
+        text-decoration: none;
+        display: block;
+
+        &:hover{
+            background-color: var(--base-background-color);
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+
+@media (max-width: 767px) {
+
+    body{
+        min-width: var(--min-size);
+    }
+
+    nav{
+        flex-direction: column;
+        gap: var(--fs);
+
+        ul{
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .grid{
+        flex-direction: column;
+    }
+
+    .justify_between{
+        flex-direction: column;
+    }
+
+    .flex_column{
+        align-items: center;
+    }
+
+    .no_mobile{
+        display: none;
+    }
+
+    .mobile{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+
+
+
+
+

@@ -1,86 +1,121 @@
+<? require_once 'php/library.php'; ?>
+
 <!DOCTYPE html>
-<html lang="en" data-theme="ligth">
+<html lang="en" data-theme="<?php echo !empty($_COOKIE['theme']) ? $_COOKIE['theme'] : 'dark' ; ?>">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="color-scheme" content="light dark">
-        <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
-        <link rel="stylesheet" href="/assets/css/normalize.css">
+        <link rel="shortcut icon" href="/public/img/favicon_azure.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="/public/css/main.css">
+        <script src="/public/js/main.js"></script>
         <title>dockBox</title>
     </head>
 
     <body>
-        <main class="container">
-            <h1>Your simple local development enviroment</h1>
-            <h2>Your simple local development enviroment</h2>
-            <h3>Your simple local development enviroment</h3>
-            <h4>Your simple local development enviroment</h4>
-            <h5>Your simple local development enviroment</h5>
-            <h6>Your simple local development enviroment</h6>
-        </main>
-    </body>
 
-    <!-- <body>
-        <section class="hero is-medium is-info is-bold">
-            <div class="hero-body">
-                <div class="container has-text-centered">
-                    <h1 class="title">
-                        dockBox
-                    </h1>
-                    <h2 class="subtitle">
-                        Your local development environment
-                    </h2>
-                </div>
-            </div>
-        </section>
-        <section class="section">
-            <div class="container">
-                <div class="columns">
-                    <div class="column">
-                        <h3 class="title is-3 has-text-centered">Environment</h3>
-                        <hr>
-                        <div class="content">
-                            <ul>
-                                <li><?= apache_get_version(); ?></li>
-                                <li>PHP <?= phpversion(); ?></li>
-                                <li>
+        <? echo getHeader(); ?>
+
+        <main>
+            <div class="container grid">
+                <div class="column">
+                    <div class="card">
+                        <h2>Envitoment</h2>
+                        <table>
+                            <tr>
+                                <td>Web Server</td>
+                                <td><?= apache_get_version(); ?></td>
+                            </tr>
+                            <tr class="even">
+                                <td>PHP</td>
+                                <td><?= phpversion(); ?></td>
+                            </tr>
+                            <tr>
+                                <td>Database</td>
+                                <td>
                                     <?php
-                                    $link = mysqli_connect("database", "root", $_ENV['MYSQL_ROOT_PASSWORD'], null);
+                                        $link = mysqli_connect("database", "root", $_ENV['MYSQL_ROOT_PASSWORD'], null);
 
-                                    if (mysqli_connect_errno()) {
-                                        printf("MySQL connecttion failed: %s", mysqli_connect_error());
-                                    } else {
-                                        printf("MySQL Server %s", mysqli_get_server_info($link));
-                                    }
-                                    
-                                    mysqli_close($link);
+                                        if (mysqli_connect_errno()) {
+                                            printf("MySQL connecttion failed: %s", mysqli_connect_error());
+                                        } else {
+                                            printf("MySQL Server %s", mysqli_get_server_info($link));
+                                        }
+                                        
+                                        mysqli_close($link);
                                     ?>
-                                </li>
-                            </ul>
-                        </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="column">
-                        <h3 class="title is-3 has-text-centered">Quick Links</h3>
-                        <hr>
-                        <div class="content">
-                            <ul>
-                                <li><a href="/phpinfo.php">phpinfo()</a></li>
-                                <li><a href="/test_db.php">Test DB Connection with mysqli</a></li>
-                                <li><a href="/test_db_pdo.php">Test DB Connection with PDO</a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h2>Tools</h2>
+                        <table>
+                            <tr>
+                                <td>GIT</td>
+                                <td>
+                                    <?php
+                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('git --version 2>&1'), $matches);
+                                        echo $matches[0] ?? '<span class="error">Error</span>';
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr class="even">
+                                <td>Node</td>
+                                <td>
+                                    <?php
+                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('node -v 2>&1'), $matches);
+                                        echo $matches[0] ?? '<span class="error">Error</span>';
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NPM</td>
+                                <td>
+                                    <?php
+                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('npm -v 2>&1'), $matches);
+                                        echo $matches[0] ?? '<span class="error">Error</span>';
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr class="even">
+                                <td>Yarn</td>
+                                <td>
+                                    <?php
+                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('yarn -v 2>&1'), $matches);
+                                        echo $matches[0] ?? '<span class="error">Error</span>';
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Gulp</td>
+                                <td>
+                                    <?php
+                                        preg_match_all('/(\w+)\s+version:\s+(\d+\.\d+\.\d+)/', shell_exec('gulp --version 2>&1'), $matches, PREG_SET_ORDER);
+                                        foreach ($matches as $m) {
+                                            echo $m[1] . ': ' . ($m[2] ?? '<span class="error">Error</span>') . '<br>';
+                                        }
+                                    ?>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
-        </section>
-        <footer class="footer">
-            <div class="content has-text-centered">
-                <p>
-                    <strong><a href="" target="_blank">OctoLab</a></strong><br>
-                    The source code is released under the <a href="" target="_blank">MIT license</a>.
-                </p>
+        </main>
+
+        <footer>
+            <div class="container justify_between">
+                <div class="flex_column">
+                    <a href="#" target="_blank">Octolabs</a>
+                    <span class="small">The source code is released under the <a href="https://github.com/rocco-giandomenico/dockbox/blob/main/LICENSE" target="_blank">MIT license</a></span>
+                </div>
+                
+                <span class="small">v0.1.0</span>
             </div>
         </footer>
-    </body> -->
+    </body>
 
 </html>

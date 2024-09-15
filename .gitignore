@@ -2,4 +2,7 @@
 /.vscode
 /data/*
 /logs/*
+/www/*
+/dashboard/node_modules/*
 .DS_Store
+
