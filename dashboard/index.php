@@ -19,36 +19,35 @@
         <main>
             <div class="container grid">
                 <div class="column">
-                    <div class="card">
-                        <h2>Envitoment</h2>
-                        <table>
-                            <tr>
-                                <td>Web Server</td>
-                                <td><?= apache_get_version(); ?></td>
-                            </tr>
-                            <tr class="even">
-                                <td>PHP</td>
-                                <td><?= phpversion(); ?></td>
-                            </tr>
-                            <tr>
-                                <td>Database</td>
-                                <td>
-                                    <?php
-                                        $link = mysqli_connect("database", "root", $_ENV['MYSQL_ROOT_PASSWORD'], null);
+                    <? echo getEnviroment(); ?>
 
-                                        if (mysqli_connect_errno()) {
-                                            printf("MySQL connecttion failed: %s", mysqli_connect_error());
-                                        } else {
-                                            printf("MySQL Server %s", mysqli_get_server_info($link));
-                                        }
-                                        
-                                        mysqli_close($link);
-                                    ?>
-                                </td>
-                            </tr>
+                    <div class="card">
+                        <h2>Virtual Hosts</h2>
+                        <table>
+                            <?
+                                $folders = array_filter(glob('../../../shared/www/*'), 'is_dir');
+
+                                foreach($folders as $k => $f) {
+                                    $dir = basename($f);
+                                    $back = $k%2 == 0 ? '' : 'even';
+                                    $domain = shell_exec('echo "$DOMAIN"');
+
+                                    echo <<<EOF
+                                        <tr class="$back">
+                                            <td><a href="http://$dir.$domain" target="_blank">http://$dir.$domain</a></td>
+                                        </tr>
+                                    EOF;
+
+                                    // echo "$dir.$domain" . '<br>';
+                                    // echo shell_exec("curl -I $dir.$domain");
+                                    // echo '<br>';
+                                }
+                                    
+                            ?>
                         </table>
                     </div>
                 </div>
+                
                 <div class="column">
                     <div class="card">
                         <h2>Tools</h2>
@@ -58,29 +57,38 @@
                                 <td>
                                     <?php
                                         preg_match('/\d+\.\d+\.\d+/', shell_exec('git --version 2>&1'), $matches);
-                                        echo $matches[0] ?? '<span class="error">Error</span>';
+                                        echo $matches[0];
                                     ?>
                                 </td>
                             </tr>
                             <tr class="even">
-                                <td>Node</td>
+                                <td>Composer</td>
                                 <td>
                                     <?php
-                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('node -v 2>&1'), $matches);
-                                        echo $matches[0] ?? '<span class="error">Error</span>';
+                                        preg_match('/Composer version (\d+\.\d+\.\d+)/', shell_exec('composer --version 2>&1'), $matches);
+                                        echo $matches[1];
                                     ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td>NPM</td>
+                                <td>Node</td>
                                 <td>
                                     <?php
-                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('npm -v 2>&1'), $matches);
-                                        echo $matches[0] ?? '<span class="error">Error</span>';
+                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('node -v 2>&1'), $matches);
+                                        echo $matches[0];
                                     ?>
                                 </td>
                             </tr>
                             <tr class="even">
+                                <td>NPM</td>
+                                <td>
+                                    <?php
+                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('npm -v 2>&1'), $matches);
+                                        echo $matches[0];
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>Yarn</td>
                                 <td>
                                     <?php
@@ -89,7 +97,7 @@
                                     ?>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="even">
                                 <td>Gulp</td>
                                 <td>
                                     <?php
@@ -109,11 +117,10 @@
         <footer>
             <div class="container justify_between">
                 <div class="flex_column">
-                    <a href="#" target="_blank">Octolabs</a>
+                    <a href="#" class="developer" target="_blank">Octolabs</a>
                     <span class="small">The source code is released under the <a href="https://github.com/rocco-giandomenico/dockbox/blob/main/LICENSE" target="_blank">MIT license</a></span>
                 </div>
-                
-                <span class="small">v0.1.0</span>
+                <span class="small">v0.2.0</span>
             </div>
         </footer>
     </body>

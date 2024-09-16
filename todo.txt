@@ -4,7 +4,12 @@
 
 
 
--   virtual host page
+-   crere funzione per tabella tools
+-   virtual host
+-   creare pagina emails
+-   xdebug
+-   ssh
+
 
 
 

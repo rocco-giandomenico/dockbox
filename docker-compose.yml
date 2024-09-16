@@ -45,6 +45,7 @@ services:
       USER_ID: ${USER_ID}
       GROUP_ID: ${GROUP_ID}
       UNAME: ${UNAME}
+      DOMAIN: ${DOMAIN}
 
     extra_hosts:
       - "host.docker.internal:host-gateway"
