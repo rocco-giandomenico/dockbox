@@ -156,21 +156,6 @@ nav{
                     opacity: 1
                 }
             }
-
-            .icon{
-
-                --size: calc(var(--fs) * 1.25);
-
-                width: var(--size);
-                height: var(--size);
-                mask-image: url('../img/icons.svg');
-                mask-size: 100%;
-                background-color: var(--base-color);
-            
-                &.dark{mask-position: 0px 0px;}
-                &.ligth{mask-position: 0px calc(-1 * var(--size));}
-                &.git{mask-position: 0px calc(-2 * var(--size));}
-            }
         }
     }
 
@@ -179,6 +164,33 @@ nav{
         height: 100%;
         background-color: var(--base-separator);
     }
+}
+
+h2{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--0_25fs);
+}
+
+.icon{
+
+    --size: calc(var(--fs) * 1.25);
+
+    width: var(--size);
+    height: var(--size);
+    mask-image: url('../img/icons.svg');
+    mask-size: 100%;
+    background-color: var(--base-color);
+
+    &.normal{
+        --size: var(--fs)
+    }
+
+    &.dark{mask-position: 0px 0px;}
+    &.ligth{mask-position: 0px calc(-1 * var(--size));}
+    &.git{mask-position: 0px calc(-2 * var(--size));}
+    &.settings{mask-position: 0px calc(-3 * var(--size));}
 }
 
 table{

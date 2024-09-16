@@ -19,6 +19,13 @@
         <main>
             <div class="container grid">
                 <div class="column">
+                    <? 
+                        echo getTools();
+                        echo getConfigMounts();
+                    ?>
+                </div>
+
+                <div class="column">
                     <? echo getEnviroment(); ?>
 
                     <div class="card">
@@ -44,70 +51,6 @@
                                 }
                                     
                             ?>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="column">
-                    <div class="card">
-                        <h2>Tools</h2>
-                        <table>
-                            <tr>
-                                <td>GIT</td>
-                                <td>
-                                    <?php
-                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('git --version 2>&1'), $matches);
-                                        echo $matches[0];
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td>Composer</td>
-                                <td>
-                                    <?php
-                                        preg_match('/Composer version (\d+\.\d+\.\d+)/', shell_exec('composer --version 2>&1'), $matches);
-                                        echo $matches[1];
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Node</td>
-                                <td>
-                                    <?php
-                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('node -v 2>&1'), $matches);
-                                        echo $matches[0];
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td>NPM</td>
-                                <td>
-                                    <?php
-                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('npm -v 2>&1'), $matches);
-                                        echo $matches[0];
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Yarn</td>
-                                <td>
-                                    <?php
-                                        preg_match('/\d+\.\d+\.\d+/', shell_exec('yarn -v 2>&1'), $matches);
-                                        echo $matches[0] ?? '<span class="error">Error</span>';
-                                    ?>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td>Gulp</td>
-                                <td>
-                                    <?php
-                                        preg_match_all('/(\w+)\s+version:\s+(\d+\.\d+\.\d+)/', shell_exec('gulp --version 2>&1'), $matches, PREG_SET_ORDER);
-                                        foreach ($matches as $m) {
-                                            echo $m[1] . ': ' . ($m[2] ?? '<span class="error">Error</span>') . '<br>';
-                                        }
-                                    ?>
-                                </td>
-                            </tr>
                         </table>
                     </div>
                 </div>

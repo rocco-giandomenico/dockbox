@@ -119,3 +119,35 @@ function getTools() {
         </div>
     EOF;
 }
+
+// Get Config Mounts
+function getConfigMounts() {
+
+    return <<<EOF
+        <div class="card">
+            <h2><div class="icon settings normal"></div>Config Mounts</h2>
+            <table>
+                <tr>
+                    <td>PHP (ini)</td>
+                    <td>config/php/php.ini</td>
+                </tr>
+                <tr class="even">
+                    <td>Virtual Host</td>
+                    <td>config/vhosts/</td>
+                </tr>
+                <tr>
+                    <td>SSL</td>
+                    <td>config/ssl/</td>
+                </tr>
+                <tr class="even">
+                    <td>APACHE_LOG_DIR</td>
+                    <td>/var/log/apache2</td>
+                </tr>
+                <tr>
+                    <td>XDEBUG_LOG_DIR</td>
+                    <td>/var/log/xdebug</td>
+                </tr>
+            </table>
+        </div>
+    EOF;
+}
