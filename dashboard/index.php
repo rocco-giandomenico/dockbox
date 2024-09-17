@@ -50,6 +50,7 @@
                                     return pathinfo($f, PATHINFO_FILENAME);
                                 }, $files);
                 
+                                echo exec('whoami');
 
                                 $addFiles = (array_diff($folders, $files));
                                 $removefiles = (array_diff($files, $folders));

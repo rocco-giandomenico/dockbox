@@ -109,5 +109,6 @@ RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/
 
 # Cleanup and permissions
 RUN rm -rf /usr/src/*
-RUN chown www-data:www-data /etc/apache2/sites-enabled/
+RUN chown www-data:www-data /etc/apache2/sites-enabled/ && \
+    chmod 755 /etc/apache2/sites-enabled/
 WORKDIR /shared/www
