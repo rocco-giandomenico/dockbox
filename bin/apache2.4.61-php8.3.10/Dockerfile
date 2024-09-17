@@ -107,7 +107,7 @@ RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/
     cp /usr/local/share/oh-my-bash/bashrc ~/.bashrc && \ 
     cp /usr/local/share/oh-my-bash/bashrc /home/${UNAME}/.bashrc
 
-# Cleanup
+# Cleanup and permissions
 RUN rm -rf /usr/src/*
 RUN chown www-data:www-data /etc/apache2/sites-enabled/
 WORKDIR /shared/www
