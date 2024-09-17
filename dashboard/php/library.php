@@ -9,13 +9,13 @@ function getHeader() {
         <header>
             <div class="container">
                 <nav>
-                    <a href="#"><div class="logo"></div></a>
+                    <a href=""><div class="logo"></div></a>
                     
                     <ul class="mobile">
                         <li>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Emails</a></li>
+                                <li><a href="">Home</a></li>
+                                <li><a href="">Emails</a></li>
                                 <li class="dropdown">
                                     <a data-type="dropdown" href="#">Info</a>
                                     <div class="dropdown-content hidden">
@@ -31,7 +31,7 @@ function getHeader() {
                         <li>
                             <ul class="compact">
                                 <li><a href="https://github.com/rocco-giandomenico/dockbox" target="_blank"><div class="icon git"></div></a></li>
-                                <li><a href="#"><div data-type="theme_toggle" class="icon $icon"></div></a></li>
+                                <li><a href=""><div data-type="theme_toggle" class="icon $icon"></div></a></li>
                             </ul>
                         </li>
                     </ul>
