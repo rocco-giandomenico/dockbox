@@ -3,7 +3,7 @@
 /data/*
 /logs/*
 /www/*
-!/www/
+!www/
 /dashboard/node_modules/*
 .DS_Store
 
