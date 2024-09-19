@@ -7,13 +7,9 @@
 data/*
 logs/*
 www/*
-/config/vhosts/*
+config/*
 dashboard/node_modules/*
 
 # ------------------------------------------------------------------------------
 
 !.gitkeep
-!.vhosts.conf
-
-
-
