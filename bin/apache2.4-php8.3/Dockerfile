@@ -80,6 +80,8 @@ RUN a2enmod ssl && a2enmod rewrite
 # Enable apache modules
 RUN a2enmod rewrite headers
 
+RUN a2enmod vhost_alias
+
 # Create UID, GID and shared folder
 ARG USER_ID
 ARG GROUP_ID

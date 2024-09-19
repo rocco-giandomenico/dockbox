@@ -1,9 +1,18 @@
-/.env
-/.vscode
-/data/*
-/logs/*
-/www/*
-!.gitkeep
-/dashboard/node_modules/*
 .DS_Store
+.env
+.vscode
+
+# ------------------------------------------------------------------------------
+
+data/*
+logs/*
+www/*
+vhosts/*
+dashboard/node_modules/*
+
+# ------------------------------------------------------------------------------
+
+!.gitkeep
+
+
 
