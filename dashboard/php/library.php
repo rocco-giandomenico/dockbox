@@ -53,7 +53,7 @@ function getEnviroment() {
 
     return <<<EOF
         <div class="card">
-            <h2>Envitoment</h2>
+            <h2><div class="icon server normal"></div>Envitoment</h2>
             <table>
                 <tr>
                     <td>Web Server</td>
@@ -80,40 +80,35 @@ function getTools() {
     preg_match('/\d+\.\d+\.\d+/', shell_exec('node -v 2>&1'), $node);
     preg_match('/\d+\.\d+\.\d+/', shell_exec('npm -v 2>&1'), $npm);
     preg_match('/\d+\.\d+\.\d+/', shell_exec('yarn -v 2>&1'), $yarn);
-
-    $gulp = '';
-    preg_match_all('/(\w+)\s+version:\s+(\d+\.\d+\.\d+)/', shell_exec('gulp --version 2>&1'), $matches, PREG_SET_ORDER);
-    foreach ($matches as $m) {
-        $gulp .= $m[1] . ': ' . $m[2] . '<br>';
-    }
+    preg_match_all('/(\w+)\s+version:\s+(\d+\.\d+\.\d+)/', shell_exec('gulp --version 2>&1'), $gulp, PREG_SET_ORDER);
 
     return <<<EOF
         <div class="card">
-            <h2>Tools</h2>
+            <h2><div class="icon tool normal"></div>Tools</h2>
             <table>
                 <tr>
                     <td>GIT</td>
-                    <td>$git[0]</td>
+                    <td>{$git[0]}</td>
                 </tr>
                 <tr class="even">
                     <td>Composer</td>
-                    <td>$composer[1]</td>
+                    <td>{$composer[1]}</td>
                 </tr>
                 <tr>
                     <td>Node</td>
-                    <td>$node[0]</td>
+                    <td>{$node[0]}</td>
                 </tr>
                 <tr class="even">
                     <td>NPM</td>
-                    <td>$npm[0]</td>
+                    <td>{$npm[0]}</td>
                 </tr>
                 <tr>
                     <td>Yarn</td>
-                    <td>$yarn[0]</td>
+                    <td>{$yarn[0]}</td>
                 </tr>
                 <tr class="even">
                     <td>Gulp</td>
-                    <td>$gulp</td>
+                    <td>{$gulp[0][2]}</td>
                 </tr>
             </table>
         </div>
@@ -150,4 +145,54 @@ function getConfigMounts() {
             </table>
         </div>
     EOF;
+}
+
+// Get Virtual Hosts
+function getVirtualHosts() {
+
+    $output = "<div class=\"card\"><h2>Virtual Hosts</h2><table>";
+
+    // Get Folders
+    $folders = array_filter(glob('/shared/www/*'), 'is_dir');
+    foreach($folders as $k => $f) {
+        $dir = basename($f);
+        $back = $k%2 == 0 ? '' : 'even';
+
+        $res = shell_exec("curl -I $dir." . $_ENV['DOMAIN']);
+
+        if($res) {
+            $output .= "
+                <tr class=\"$back\">
+                    <td class=\"vhost\"><div class=\"icon check normal green\"></div><a href=\"http://{$dir}.{$_ENV['DOMAIN']}\" target=\"_blank\">{$dir}.{$_ENV['DOMAIN']}</a></td>
+                </tr>
+            ";
+        } else {
+            $output .= "
+                <tr class=\"$back\">
+                    <td class=\"vhost\"><div class=\"icon alert normal error\"></div><span class=\"error\">Add to host - 127.0.0.1 {$dir}.{$_ENV['DOMAIN']}</span></td>
+                </tr>
+            ";
+        }
+    }   
+
+    return $output . '</table></div>';
+}
+
+// Get Footer
+function getFooter() {
+
+    $version = 'v0.3.1';
+
+    return <<<EOF
+        <footer>
+            <div class="container justify_between">
+                <div class="flex_column">
+                    <a href="#" class="developer">Octolabs</a>
+                    <span class="small">The source code is released under the <a href="https://github.com/rocco-giandomenico/dockbox/blob/main/LICENSE" target="_blank">MIT license</a></span>
+                </div>
+                <span class="small">{$version}</span>
+            </div>
+        </footer>
+    EOF;
+
 }

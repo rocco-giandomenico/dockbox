@@ -37,6 +37,8 @@
     --w900: 900;
 
     --color-error: rgb(217, 53, 38);
+    --color-green: rgb(57, 135, 18);
+    --azure: rgb(1, 127, 192);
 }
 
 [data-theme="light"],
@@ -170,7 +172,17 @@ h2{
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: var(--0_25fs);
+    gap: var(--0_5fs);
+}
+
+td{
+    a{
+        opacity: 0.7;
+        &:hover{
+            text-decoration: underline;
+            opacity: 1;
+        }
+    }
 }
 
 .icon{
@@ -187,10 +199,22 @@ h2{
         --size: var(--fs)
     }
 
+    &.green{
+        background-color: var(--color-green);
+    }
+
+    &.error{
+        background-color: var(--color-error);
+    }
+
     &.dark{mask-position: 0px 0px;}
     &.ligth{mask-position: 0px calc(-1 * var(--size));}
     &.git{mask-position: 0px calc(-2 * var(--size));}
     &.settings{mask-position: 0px calc(-3 * var(--size));}
+    &.tool{mask-position: 0px calc(-4 * var(--size));}
+    &.server{mask-position: 0px calc(-5 * var(--size));}
+    &.check{mask-position: 0px calc(-6 * var(--size));}
+    &.alert{mask-position: 0px calc(-7 * var(--size));}
 }
 
 table{
@@ -204,6 +228,7 @@ table{
         }
 
         td{
+            font-weight: 100;
             padding: var(--0_5fs);
             box-shadow: 1px 0px 0px 0px var(--base-separator);
         }
@@ -215,10 +240,20 @@ span{
         font-size: var(--0_75fs);
         font-weight: var(--w200);
     }
+    &.error{
+        font-weight: 100;
+        color: var(--color-error);
+    }
 }
 
 .hidden{
     display: none;
+}
+
+.vhost{
+    display:flex;
+    align-items: center;
+    gap: var(--0_5fs);
 }
 
 .justify_between{

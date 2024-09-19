@@ -27,76 +27,13 @@
 
                 <div class="column">
                     <? 
-                        echo getEnviroment(); 
+                        echo getEnviroment();
+                        echo getVirtualHosts();
                     ?>
-
-                    <div class="card">
-                        <h2>Virtual Hosts</h2>
-                        <table>
-                            <?
-                                // Get Folders
-                                $folders = array_filter(glob('/shared/www/*'), 'is_dir');
-
-                                $folders = array_map(function($f) {
-                                    return basename($f);
-                                }, $folders);
-                                
-                                // Get Files
-                                $files = array_filter(scandir('/etc/apache2/sites-enabled'), function($f) {
-                                    return pathinfo($f, PATHINFO_EXTENSION) === 'conf';
-                                });
-
-                                $files = array_map(function($f) {
-                                    return pathinfo($f, PATHINFO_FILENAME);
-                                }, $files);
-                
-                                echo exec('whoami');
-
-                                $addFiles = (array_diff($folders, $files));
-                                $removefiles = (array_diff($files, $folders));
-
-                                // Create Configuration files
-                                foreach($addFiles as $f) {
-                                    touch('/etc/apache2/sites-enabled/'. $f . '.conf');
-                                }
-
-                                // Remove Configuration files
-                                foreach($removefiles as $f) {
-                                    unlink('/etc/apache2/sites-enabled/'. $f . '.conf');
-                                }
-
-                                
-                                // foreach($folders as $k => $f) {
-                                //     $dir = basename($f);
-                                //     $back = $k%2 == 0 ? '' : 'even';
-                                //     $domain = shell_exec('echo "$DOMAIN"');
-
-                                //     echo <<<EOF
-                                //         <tr class="$back">
-                                //             <td><a href="$dir.$domain" target="_blank">$dir.$domain</a></td>
-                                //         </tr>
-                                //     EOF;
-
-                                //     // echo "$dir.$domain" . '<br>';
-                                //     // echo shell_exec("curl -I $dir.$domain");
-                                //     // echo '<br>';
-                                // }
-                                    
-                            ?>
-                        </table>
-                    </div>
                 </div>
             </div>
         </main>
 
-        <footer>
-            <div class="container justify_between">
-                <div class="flex_column">
-                    <a href="#" class="developer">Octolabs</a>
-                    <span class="small">The source code is released under the <a href="https://github.com/rocco-giandomenico/dockbox/blob/main/LICENSE" target="_blank">MIT license</a></span>
-                </div>
-                <span class="small">v0.2.0</span>
-            </div>
-        </footer>
+        <? echo getFooter(); ?>
     </body>
 </html>
