@@ -169,7 +169,7 @@ function getVirtualHosts() {
         } else {
             $output .= "
                 <tr class=\"$back\">
-                    <td class=\"vhost\"><div class=\"icon alert normal error\"></div><span class=\"error\">Add to host - 127.0.0.1 {$dir}.{$_ENV['DOMAIN']}</span></td>
+                    <td class=\"vhost\"><div class=\"icon alert normal error\"></div><span class=\"error\">Add to host file - 127.0.0.1 {$dir}.{$_ENV['DOMAIN']}</span></td>
                 </tr>
             ";
         }

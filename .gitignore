@@ -11,7 +11,9 @@
 data/*
 logs/*
 www/*
-config/*
+config/initdb/*
+config/php/*
+config/ssl/*
 dashboard/node_modules/*
 
 # ------------------------------------------------------------------------------
