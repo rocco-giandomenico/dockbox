@@ -4,6 +4,7 @@
 .DS_Store
 .env
 .vscode
+config/vhosts/default.conf
 
 # ------------------------------------------------------------------------------
 # Folder

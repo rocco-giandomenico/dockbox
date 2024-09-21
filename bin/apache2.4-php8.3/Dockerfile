@@ -80,7 +80,10 @@ RUN a2enmod ssl && a2enmod rewrite
 # Enable apache modules
 RUN a2enmod rewrite headers
 
+# Enable vhosts aliases
 RUN a2enmod vhost_alias
+COPY create-vhosts.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/create-vhosts.sh
 
 # Create UID, GID and shared folder
 ARG USER_ID
@@ -111,4 +114,5 @@ RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/
 
 # Cleanup and permissions
 RUN rm -rf /usr/src/*
+CMD ["/bin/bash", "-c", "/usr/local/bin/create-vhosts.sh"]
 WORKDIR /shared/www
