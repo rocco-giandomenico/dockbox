@@ -72,13 +72,16 @@ RUN apt-get -y update && \
     docker-php-ext-install gd
 
 # Enable SSL support
-RUN mkdir -p /etc/apache2/ssl && \
+RUN apt-get -y update && \
+    apt-get --no-install-recommends install -y libnss3-tools && \
+    curl -fsSL "https://dl.filippo.io/mkcert/latest?for=linux/amd64" -o mkcert && \
+    chmod +x mkcert && \
+    mv mkcert /usr/local/bin/ && \
+    mkcert -install && \
     a2enmod ssl && \
-    a2enmod rewrite
+    a2enmod rewrite && \
+    a2enmod headers
     
-
-# Enable apache modules
-RUN a2enmod rewrite headers
 
 # Enable vhosts aliases
 RUN a2enmod vhost_alias

@@ -12,6 +12,7 @@ config/vhosts/default.conf
 data
 logs
 www
+config
 dashboard/node_modules
 
 # ------------------------------------------------------------------------------
