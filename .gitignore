@@ -4,7 +4,6 @@
 .DS_Store
 .env
 .vscode
-config/vhosts/default.conf
 
 # ------------------------------------------------------------------------------
 # Folder
@@ -12,10 +11,12 @@ config/vhosts/default.conf
 data
 logs
 www
-config
+config/vhosts/*
+conf/ssl/*
 dashboard/node_modules
 
 # ------------------------------------------------------------------------------
 # Keep
 
 !.gitkeep
+
