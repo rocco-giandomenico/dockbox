@@ -11,12 +11,10 @@
 data
 logs
 www
-config/vhosts/*
-conf/ssl/*
+config
 dashboard/node_modules
 
 # ------------------------------------------------------------------------------
 # Keep
 
 !.gitkeep
-

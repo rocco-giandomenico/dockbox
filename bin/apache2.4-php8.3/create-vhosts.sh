@@ -1,9 +1,21 @@
 #!/bin/bash
 
 # ------------------------------------------------------------------------------
+# GENERATE CERTIFICATE
+
+# cert-gen.sh -v -c IT -s Rome -l Rome -o dockBox -u dockBox \
+#     -n localhost -e admin@dockbox.org \
+#     -a 'localhost,127.0.0.1' \
+#     /etc/apache2/ssl/dockbox-rootCA.key \
+#     /etc/apache2/ssl/dockbox-rootCA.crt \
+#     /etc/apache2/ssl/dockbox.key \
+#     /etc/apache2/ssl/dockbox.csr \
+#     /etc/apache2/ssl/dockbox.crt
+
+# ------------------------------------------------------------------------------
 # DASHBOARD
 
-if [ "$SSL_TYPE" = "plain"]; then
+if [ "$SSL_TYPE" = "plain" ]; then
 
     cat << EOF > /etc/apache2/sites-enabled/default.conf
 <VirtualHost *:80>
@@ -22,14 +34,7 @@ EOF
 
 fi
 
-if [ "$SSL_TYPE" = "ssl"]; then
-
-    cp /root/.local/share/mkcert/rootCA.pem /etc/apache2/ssl/rootCA.crt
-    cp /root/.local/share/mkcert/rootCA-key.pem /etc/apache2/ssl/rootCA-key.key
-
-    echo "*.${DOMAIN}"
-
-    mkcert -cert-file "/etc/apache2/ssl/dockbox.crt" -key-file "/etc/apache2/ssl//dockbox.key" localhost "*.${DOMAIN}"
+if [ "$SSL_TYPE" = "ssl" ]; then
 
     cat << EOF > /etc/apache2/sites-enabled/default.conf
 <VirtualHost *:443>
