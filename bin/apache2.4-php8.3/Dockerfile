@@ -77,10 +77,7 @@ RUN a2enmod ssl && \
     a2enmod headers
 
 COPY cert-gen.sh /usr/local/bin/
-
-RUN mkdir -p /etc/apache2/ssl && \
-    chmod +x /usr/local/bin/cert-gen.sh && \
-    ca-gen.sh
+RUN chmod +x /usr/local/bin/cert-gen.sh
     
 # Enable vhosts aliases
 RUN a2enmod vhost_alias
