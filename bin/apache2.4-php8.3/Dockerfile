@@ -75,9 +75,6 @@ RUN apt-get -y update && \
 RUN a2enmod ssl && \
     a2enmod rewrite && \
     a2enmod headers
-
-COPY cert-gen.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/cert-gen.sh
     
 # Enable vhosts aliases
 RUN a2enmod vhost_alias
