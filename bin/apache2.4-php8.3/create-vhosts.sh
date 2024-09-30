@@ -9,9 +9,9 @@ CERTIFICATE_DEF_DAYS=825
 DEF_SIGN_SIGNATURE="sha256"
 CA_KEY_FILE="/etc/apache2/ssl/root-ca.key"
 CA_CRT_FILE="/etc/apache2/ssl/root-ca.crt"
-CERTIFICATE_KEY_FILE="/etc/apache2/ssl/dockbox.key"
-CERTIFICATE_CRS_FILE="/etc/apache2/ssl/dockbox.crs"
-CERTIFICATE_CRT_FILE="/etc/apache2/ssl/dockbox.crt"
+CERTIFICATE_KEY_FILE="/etc/ssl/certs/dockbox.key"
+CERTIFICATE_CRS_FILE="/etc/ssl/certs/dockbox.crs"
+CERTIFICATE_CRT_FILE="/etc/ssl/certs/dockbox.crt"
 
 CA_SUBJECT="/C=IT/ST=Rome/L=Rome/O=dockbox/OU=dockbox/CN=dockbox.org/emailAddress=ca@dockbox.org"
 ca_dnq="$( openssl rsa -outform PEM -pubout -in "${CA_KEY_FILE}" 2>/dev/null | openssl base64 -d | dd bs=1 skip=24 2>/dev/null | openssl sha1 -binary | openssl base64 )"
@@ -105,8 +105,8 @@ if [ "$SSL_TYPE" = "ssl" ]; then
 	</Directory>
     
     SSLEngine on
-    SSLCertificateFile /etc/apache2/ssl/dockbox.crt
-    SSLCertificateKeyFile /etc/apache2/ssl/dockbox.key
+    SSLCertificateFile ${CERTIFICATE_CRT_FILE}
+    SSLCertificateKeyFile ${CERTIFICATE_KEY_FILE}
 
 </VirtualHost>
 
