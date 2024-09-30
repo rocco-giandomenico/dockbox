@@ -14,6 +14,8 @@ services:
         GROUP_ID: ${GROUP_ID}
         UNAME: ${UNAME}
 
+    command: /bin/bash -c "/usr/local/bin/create-vhosts.sh && exec apache2ctl -D FOREGROUND"
+
     container_name: "${COMPOSE_PROJECT_NAME}-${WEBSERVER_VERSION}"
 
     ports:

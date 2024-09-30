@@ -113,5 +113,4 @@ RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/
 
 # Cleanup and permissions
 RUN rm -rf /usr/src/*
-CMD ["/bin/bash", "-c", "/usr/local/bin/create-vhosts.sh && exec apache2ctl -D FOREGROUND"]
 WORKDIR /shared/www

@@ -3,14 +3,66 @@
 # ------------------------------------------------------------------------------
 # GENERATE CERTIFICATE
 
-# cert-gen.sh -v -c IT -s Rome -l Rome -o dockBox -u dockBox \
-#     -n localhost -e admin@dockbox.org \
-#     -a 'localhost,127.0.0.1' \
-#     /etc/apache2/ssl/dockbox-rootCA.key \
-#     /etc/apache2/ssl/dockbox-rootCA.crt \
-#     /etc/apache2/ssl/dockbox.key \
-#     /etc/apache2/ssl/dockbox.csr \
-#     /etc/apache2/ssl/dockbox.crt
+DEF_KEYSIZE=2048
+CA_DEF_DAYS=3650
+CERTIFICATE_DEF_DAYS=825
+DEF_SIGN_SIGNATURE="sha256"
+CA_KEY_FILE="/etc/apache2/ssl/root-ca.key"
+CA_CRT_FILE="/etc/apache2/ssl/root-ca.crt"
+CERTIFICATE_KEY_FILE="/etc/apache2/ssl/dockbox.key"
+CERTIFICATE_CRS_FILE="/etc/apache2/ssl/dockbox.crs"
+CERTIFICATE_CRT_FILE="/etc/apache2/ssl/dockbox.crt"
+
+CA_SUBJECT="/C=IT/ST=Rome/L=Rome/O=dockbox/OU=dockbox/CN=dockbox.org/emailAddress=ca@dockbox.org"
+ca_dnq="$( openssl rsa -outform PEM -pubout -in "${CA_KEY_FILE}" 2>/dev/null | openssl base64 -d | dd bs=1 skip=24 2>/dev/null | openssl sha1 -binary | openssl base64 )"
+ca_dnq="${ca_dnq//\//\\/}"
+CA_SUBJECT="${SUBJECT}/dnQualifier=${ca_dnq}"
+
+CERTIFICATE_SUBJECT="/C=IT/ST=Rome/L=Rome/O=dockbox/OU=dockbox/CN=localhost/emailAddress=ca@dockbox.org"
+
+CA_CONFIG="[req]\ndistinguished_name=req_distinguished_name\n[req_distinguished_name]\n[v3_ca]\nbasicConstraints=critical,CA:TRUE\nsubjectKeyIdentifier=hash\nkeyUsage=critical,digitalSignature,cRLSign,keyCertSign\nauthorityKeyIdentifier=keyid:always,issuer:always\n"
+
+CERTIFICATE_CONFIG="[req]distinguished_name=req_distinguished_name\nx509_extensions=v3_req\n[req_distinguished_name]\n[v3_req]\nbasicConstraints=critical,CA:FALSE\nsubjectKeyIdentifier=hash\nkeyUsage=critical,digitalSignature,keyEncipherment\nauthorityKeyIdentifier=keyid:always,issuer:always\nextendedKeyUsage=serverAuth,clientAuth\nsubjectAltName=DNS.1:localhost\n"
+
+# CA EXEC ----------------------------------------------------------------------
+
+openssl genrsa -out ${CA_KEY_FILE} ${DEF_KEYSIZE}
+
+openssl req \
+  -new \
+  -x509 \
+  -nodes \
+  -${DEF_SIGN_SIGNATURE} \
+  -days ${CA_DEF_DAYS} \
+  -key ${CA_KEY_FILE} \
+  -subj ${CA_SUBJECT} \
+  -extensions v3_ca \
+  -config <(printf ${CA_CONFIG}) \
+  -out ${CA_CRT_FILE}
+
+# CERTIFICATE EXEC -------------------------------------------------------------
+
+openssl req \
+  -newkey rsa:${DEF_KEYSIZE} \
+  -${DEF_SIGN_SIGNATURE} \
+  -nodes \
+  -extensions v3_req \
+  -config <(printf ${CERTIFICATE_CONFIG}) \
+  -keyout ${CERTIFICATE_KEY_FILE} \
+  -subj ${CERTIFICATE_SUBJECT} \
+  -out ${CERTIFICATE_CRS_FILE}
+
+openssl x509 \
+  -req \
+  -${DEF_SIGN_SIGNATURE} \
+  -extensions v3_req \
+  -extfile <(printf ${CERTIFICATE_CONFIG}) \
+  -days ${CERTIFICATE_DEF_DAYS} \
+  -in ${CERTIFICATE_CRS_FILE} \
+  -CA ${CA_CRT_FILE} \
+  -CAkey ${CA_KEY_FILE} \
+  -CAcreateserial \
+  -out ${CERTIFICATE_CRT_FILE}
 
 # ------------------------------------------------------------------------------
 # DASHBOARD
