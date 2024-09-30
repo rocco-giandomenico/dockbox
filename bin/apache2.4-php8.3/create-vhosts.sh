@@ -16,7 +16,7 @@ CERTIFICATE_CRT_FILE="/etc/apache2/ssl/dockbox.crt"
 CA_SUBJECT="/C=IT/ST=Rome/L=Rome/O=dockbox/OU=dockbox/CN=dockbox.org/emailAddress=ca@dockbox.org"
 ca_dnq="$( openssl rsa -outform PEM -pubout -in "${CA_KEY_FILE}" 2>/dev/null | openssl base64 -d | dd bs=1 skip=24 2>/dev/null | openssl sha1 -binary | openssl base64 )"
 ca_dnq="${ca_dnq//\//\\/}"
-CA_SUBJECT="${SUBJECT}/dnQualifier=${ca_dnq}"
+CA_SUBJECT="${CA_SUBJECT}/dnQualifier=${ca_dnq}"
 
 CERTIFICATE_SUBJECT="/C=IT/ST=Rome/L=Rome/O=dockbox/OU=dockbox/CN=localhost/emailAddress=ca@dockbox.org"
 
@@ -26,19 +26,23 @@ CERTIFICATE_CONFIG="[req]distinguished_name=req_distinguished_name\nx509_extensi
 
 # CA EXEC ----------------------------------------------------------------------
 
-openssl genrsa -out ${CA_KEY_FILE} ${DEF_KEYSIZE}
+if [ ! -f "$CA_CRT_FILE" ]; then
 
-openssl req \
-  -new \
-  -x509 \
-  -nodes \
-  -${DEF_SIGN_SIGNATURE} \
-  -days ${CA_DEF_DAYS} \
-  -key ${CA_KEY_FILE} \
-  -subj ${CA_SUBJECT} \
-  -extensions v3_ca \
-  -config <(printf ${CA_CONFIG}) \
-  -out ${CA_CRT_FILE}
+  openssl genrsa -out ${CA_KEY_FILE} ${DEF_KEYSIZE}
+
+  openssl req \
+    -new \
+    -x509 \
+    -nodes \
+    -${DEF_SIGN_SIGNATURE} \
+    -days ${CA_DEF_DAYS} \
+    -key ${CA_KEY_FILE} \
+    -subj ${CA_SUBJECT} \
+    -extensions v3_ca \
+    -config <(printf ${CA_CONFIG}) \
+    -out ${CA_CRT_FILE}
+
+fi
 
 # CERTIFICATE EXEC -------------------------------------------------------------
 
@@ -63,6 +67,7 @@ openssl x509 \
   -CAkey ${CA_KEY_FILE} \
   -CAcreateserial \
   -out ${CERTIFICATE_CRT_FILE}
+    
 
 # ------------------------------------------------------------------------------
 # DASHBOARD
