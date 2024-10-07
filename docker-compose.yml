@@ -48,8 +48,9 @@ services:
       GROUP_ID: ${GROUP_ID}
       UNAME: ${UNAME}
       DOMAIN: ${DOMAIN}
+      DOCUMENT_FOLDER: ${DOCUMENT_FOLDER}
       SSL_TYPE: ${SSL_TYPE}
-
+      
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
