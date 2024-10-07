@@ -181,7 +181,7 @@ function getVirtualHosts() {
 // Get Footer
 function getFooter() {
 
-    $version = 'v0.4.0';
+    $version = 'v0.4.1';
 
     return <<<EOF
         <footer>
