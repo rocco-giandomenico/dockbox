@@ -75,14 +75,6 @@ RUN apt-get -y update && \
 RUN a2enmod ssl && \
     a2enmod rewrite && \
     a2enmod headers
-<<<<<<< Updated upstream
-    
-# Enable vhosts aliases
-RUN a2enmod vhost_alias
-COPY create-vhosts.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/create-vhosts.sh
-=======
->>>>>>> Stashed changes
 
 # Create UID, GID and shared folder
 ARG USER_ID

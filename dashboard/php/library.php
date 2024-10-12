@@ -150,11 +150,7 @@ function getConfigMounts() {
 // Get Footer
 function getFooter() {
 
-<<<<<<< Updated upstream
-    $version = 'v0.4.1';
-=======
     $version = 'v0.3.5';
->>>>>>> Stashed changes
 
     return <<<EOF
         <footer>
