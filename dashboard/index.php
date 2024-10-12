@@ -28,7 +28,6 @@
                 <div class="column">
                     <? 
                         echo getEnviroment();
-                        echo getVirtualHosts();
                     ?>
                 </div>
             </div>

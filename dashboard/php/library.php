@@ -147,41 +147,14 @@ function getConfigMounts() {
     EOF;
 }
 
-// Get Virtual Hosts
-function getVirtualHosts() {
-
-    $output = "<div class=\"card\"><h2>Virtual Hosts</h2><table>";
-
-    // Get Folders
-    $folders = array_filter(glob('/shared/www/*'), 'is_dir');
-    foreach($folders as $k => $f) {
-        $dir = basename($f);
-        $back = $k%2 == 0 ? '' : 'even';
-
-        $res = shell_exec("curl -I $dir." . $_ENV['DOMAIN']);
-
-        if($res) {
-            $output .= "
-                <tr class=\"$back\">
-                    <td class=\"vhost\"><div class=\"icon check normal green\"></div><a href=\"http://{$dir}.{$_ENV['DOMAIN']}\" target=\"_blank\">{$dir}.{$_ENV['DOMAIN']}</a></td>
-                </tr>
-            ";
-        } else {
-            $output .= "
-                <tr class=\"$back\">
-                    <td class=\"vhost\"><div class=\"icon alert normal error\"></div><span class=\"error\">Add to host file - 127.0.0.1 {$dir}.{$_ENV['DOMAIN']}</span></td>
-                </tr>
-            ";
-        }
-    }   
-
-    return $output . '</table></div>';
-}
-
 // Get Footer
 function getFooter() {
 
+<<<<<<< Updated upstream
     $version = 'v0.4.1';
+=======
+    $version = 'v0.3.5';
+>>>>>>> Stashed changes
 
     return <<<EOF
         <footer>
